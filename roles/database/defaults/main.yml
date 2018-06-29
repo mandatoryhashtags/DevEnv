@@ -1,0 +1,33 @@
+---
+
+mariadb_upstream_version: '10.1'
+
+mariadb_mysqld_bind_address: 'localhost'
+mariadb_mysqld_port: 3306
+mariadb_mysqld_root_password: ''
+mariadb_mysqld_retsart_on_config_change: True
+
+mariadb_mysqld_backup: True
+mariadb_mysqld_backup_weekly_backup_day: 6
+mariadb_mysqld_backup_createdb: 'yes'
+
+mariadb_default_client_config:
+  - 'default-character-set = utf8'
+mariadb_default_mysqld_config:
+  - 'collation-server = utf8_unicode_ci'
+  - 'init-connect = "SET NAMES utf8"'
+  - 'character-set-server = utf8'
+
+mariadb_default_mysqld_safe_config: []
+mariadb_default_galera_config: []
+mariadb_default_mysqldump_config: []
+mariadb_default_mysql_config: []
+mariadb_default_isamchk_config: []
+
+mariadb_client_config: []
+mariadb_mysqld_config: []
+mariadb_mysqld_safe_config: []
+mariadb_galera_config: []
+mariadb_mysqldump_config: []
+mariadb_mysql_config: []
+mariadb_isamchk_config: []

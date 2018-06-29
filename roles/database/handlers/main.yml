@@ -1,0 +1,4 @@
+---
+## called by roles later on
+- name: reload mariadb
+  service: name=mysql state=reload

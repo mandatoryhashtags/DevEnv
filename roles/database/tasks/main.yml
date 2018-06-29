@@ -1,0 +1,31 @@
+---
+
+- name: Install MariaDB repository
+  apt_repository: repo='deb http://ftp.igh.cnrs.fr/pub/mariadb/repo/10.0/ubuntu trusty main' state=present
+- name: Add repository key to the system
+  apt_key: keyserver=keyserver.ubuntu.com id=0xcbcb082a1bb943db
+- name: Install MariaDB Server
+  apt: name=mariadb-server state=latest update_cache=yes
+
+- name: Configure database client on first install
+  template:
+    src: 'client.cnf.j2'
+    dest: '/etc/mysql/conf.d/client.cnf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  notify: 
+    - reload mariadb  
+
+- name: Configure the database server
+  template:
+    src: 'server.cnf.j2'
+    dest: '/etc/mysql/conf.d/server.cnf'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  notify: 
+    - reload mariadb
+
+- name: Start MariaDb
+  service: name=mysql state=started 

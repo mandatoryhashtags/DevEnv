@@ -1,0 +1,20 @@
+---
+- name: Install Python Software Props
+  apt: name=python-software-properties state=present
+
+- name: Update Repo
+  command: add-apt-repository ppa:ondrej/php  
+
+- name: Update Apt
+  command: apt-get update  
+
+- name: install php 5.6
+  apt: name=php5.6 state=present  
+
+- name: Install PHP modules
+  apt: name={{ item }} state=present
+  with_items: 
+    - php5.6-cli
+    - php5.6-xml
+    - php5.6-mysql
+    - php5.6-pdo  
